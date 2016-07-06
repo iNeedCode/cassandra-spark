@@ -5,8 +5,9 @@ and ensure that you have `cqlsh` access to the database. Set up the test keyspac
 
 ```bash
     cqlsh < data/userdb/userdb.cql
-    cqlsh < /data/musicdb/musicdb.cql
-    cqlsh < /data/musicdb/musicdata.cql
+    cqlsh < data/musicdb/musicdb.cql
+    cqlsh < data/musicdb/musicdata.cql
+    cqlsh < data/cql/spark_output.cql
 ```
 
 That is it!

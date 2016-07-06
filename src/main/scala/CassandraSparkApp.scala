@@ -18,12 +18,17 @@ object CassandraSparkApp extends App {
   val cc = new SparkContext(conf)
 
   // Connect to the database and do some operations on the data
-  val rdd = cc.cassandraTable("spark_musicdb", "album")
+  val rdd = cc.cassandraTable("spark_musicdb", "tracks_by_album")
 
 
   // Print all entries that have even IDs
-    rdd.filter(_.getInt("year") > 2000).foreach(println)
-//  println(rdd.count())
+//    rdd.filter(_.getInt("number") > 2).foreach(println)
+  println(rdd.count())
+
+  println(rdd.map(_.getInt("number")).sum)
+
+  val collection = cc.parallelize(Seq((3, "key3"), (4, "key4")))
+  collection.saveToCassandra("spark_output", "key_value", SomeColumns("id", "name"))
 
   cc.stop
 }
