@@ -1,8 +1,13 @@
+import org.apache.log4j.{PropertyConfigurator, Level, LogManager}
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
 import com.datastax.spark.connector._
 
 object CassandraSparkApp extends App {
+
+  // adjust the system log with ON or OFF
+  PropertyConfigurator.configure("conf/log4j.properties")
+
   // Configure the Cassandra host and create a new Spark context
   val conf = new SparkConf(true)
     .set("spark.cassandra.connection.host", "127.0.0.1")
@@ -13,12 +18,12 @@ object CassandraSparkApp extends App {
   val cc = new SparkContext(conf)
 
   // Connect to the database and do some operations on the data
-  val rdd = cc.cassandraTable("test_spark", "test")
+  val rdd = cc.cassandraTable("spark_musicdb", "album")
 
-  // Print all entries in the database
-  rdd.foreach(println)
 
   // Print all entries that have even IDs
-  rdd.filter(_.getInt("id") % 2 == 0).foreach(println)
+    rdd.filter(_.getInt("year") > 2000).foreach(println)
+//  println(rdd.count())
+
   cc.stop
 }
