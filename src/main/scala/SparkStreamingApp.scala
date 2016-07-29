@@ -19,7 +19,7 @@ object SparkStreamingApp extends App {
   stream.flatMap(record => record.split(" "))
     .map(word => (word, 1))
     .reduceByKey(_ + _)
-    .filter(_._1.isEmpty)
+    .filter(!_._1.isEmpty)
     .map(item => item.swap)
     .transform(rdd => rdd.sortByKey(ascending = false))
     .print(30)
