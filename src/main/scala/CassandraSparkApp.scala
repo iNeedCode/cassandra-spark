@@ -1,7 +1,6 @@
-import org.apache.log4j.{PropertyConfigurator, Level, LogManager}
-import org.apache.spark.SparkContext
-import org.apache.spark.SparkConf
 import com.datastax.spark.connector._
+import org.apache.log4j.PropertyConfigurator
+import org.apache.spark.{SparkConf, SparkContext}
 
 object CassandraSparkApp extends App {
 

@@ -4,13 +4,12 @@ Install Cassandra as per the [DataStax guide](http://docs.datastax.com/en/landin
 and ensure that you have `cqlsh` access to the database. Set up the test keyspace and table using:
 
 ```bash
-    cqlsh < data/userdb/userdb.cql
-    cqlsh < data/musicdb/musicdb.cql
-    cqlsh < data/musicdb/musicdata.cql
+    cqlsh < data/userdb/schema.cql
+    cqlsh < data/musicdb/schema.cql
+    cqlsh < data/musicdb/data.cql
     cqlsh < data/cql/spark_output.cql
 ```
 
-That is it!
 
 
 ## Building and running
@@ -18,4 +17,10 @@ That is it!
 You can run this from [sbt-spark-submit](https://github.com/saurfang/sbt-spark-submit) using
 ```bash
     sbt "sparkSubmit --class CassandraSparkApp"
+    sbt run
+```
+
+## pushing textfile to nc
+```bash
+    while :; do cat 2600-0.txt | nc -l 9999 ; sleep 1; done;
 ```

@@ -17,7 +17,8 @@ val sparkConnectorV = "1.6.0"
 
 lazy val sparkDependencies = Seq(
   "org.apache.spark" %% "spark-core" % sparkV,
-  "org.apache.spark" %% "spark-sql" % sparkV
+  "org.apache.spark" %% "spark-sql" % sparkV,
+  "org.apache.spark" %% "spark-streaming" % sparkV
 )
 
 lazy val dependencies = Seq(
