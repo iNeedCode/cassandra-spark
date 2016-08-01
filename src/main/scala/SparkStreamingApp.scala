@@ -22,7 +22,7 @@ object SparkStreamingApp extends App {
     .filter(!_._1.isEmpty)
     .map(item => item.swap)
     .transform(rdd => rdd.sortByKey(ascending = false))
-    .print(30)
+    .print(25)
 
   ssc.start()
   ssc.awaitTermination()
